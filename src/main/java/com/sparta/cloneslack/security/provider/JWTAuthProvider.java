@@ -1,6 +1,5 @@
 package com.sparta.cloneslack.security.provider;
 
-
 import com.sparta.cloneslack.model.User;
 import com.sparta.cloneslack.repository.UserRepository;
 import com.sparta.cloneslack.security.UserDetailsImpl;

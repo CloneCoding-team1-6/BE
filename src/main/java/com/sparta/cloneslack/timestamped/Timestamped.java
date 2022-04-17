@@ -1,6 +1,8 @@
 package com.sparta.cloneslack.timestamped;
 
 import lombok.Getter;
+import org.apache.tomcat.jni.Local;
+import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
@@ -12,6 +14,9 @@ import java.time.LocalDateTime;
 @MappedSuperclass
 @EntityListeners(AuditingEntityListener.class)
 public abstract class Timestamped {
+
+    @CreatedDate
+    private LocalDateTime createdAt;
 
     @LastModifiedDate
     private LocalDateTime modifiedAt;

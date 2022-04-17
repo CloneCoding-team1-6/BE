@@ -75,5 +75,12 @@ public class UserService {
         return new UserInfoDto(userId, username, nickname);
 
     }
+
+    public User findById(Long id) {
+        User user = userRepository.findById(id).orElseThrow(
+                ()-> new IllegalArgumentException("찾는 유저가 없습니다")
+        );
+        return user;
+    }
 }
 

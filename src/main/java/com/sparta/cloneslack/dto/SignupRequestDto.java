@@ -16,4 +16,6 @@ public class SignupRequestDto {
     private String nickName;
 
     private String password;
+
+    private String passwordCheck;
 }

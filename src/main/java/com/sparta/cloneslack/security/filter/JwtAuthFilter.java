@@ -1,6 +1,5 @@
 package com.sparta.cloneslack.security.filter;
 
-
 import com.sparta.cloneslack.security.jwt.HeaderTokenExtractor;
 import com.sparta.cloneslack.security.jwt.JwtPreProcessingToken;
 import org.springframework.security.core.Authentication;

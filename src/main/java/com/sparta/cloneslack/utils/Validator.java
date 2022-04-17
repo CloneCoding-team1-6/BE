@@ -37,6 +37,10 @@ public class Validator {
         if(signupRequestDto.getPassword().contains(signupRequestDto.getUsername())){
             throw new IllegalArgumentException("아이디가 포함되지 않은 비밀번호를 사용해주세요.");
         }
+
+        if(!signupRequestDto.getPassword().equals(signupRequestDto.getPasswordCheck())){
+            throw new IllegalArgumentException("비밀번호가 일치하지 않습니다.");
+        }
     }
 
     //아이디 중복 체크

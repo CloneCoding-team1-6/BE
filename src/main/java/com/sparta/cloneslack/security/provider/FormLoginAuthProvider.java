@@ -1,6 +1,5 @@
 package com.sparta.cloneslack.security.provider;
 
-
 import com.sparta.cloneslack.security.UserDetailsImpl;
 import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.authentication.BadCredentialsException;

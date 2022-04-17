@@ -1,6 +1,5 @@
 package com.sparta.cloneslack.security;
 
-
 import com.sparta.cloneslack.security.jwt.JwtTokenUtils;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.web.authentication.SavedRequestAwareAuthenticationSuccessHandler;
