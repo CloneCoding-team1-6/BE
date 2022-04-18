@@ -42,7 +42,7 @@ public class UserController {
         return userService.nicknameCheck(nicknameCheckDto);
     }
 
-    //로그인 여부 확인
+    //유저 정보 조회
     @GetMapping("/api/idLogin")
     public UserInfoDto getUserInfo(@AuthenticationPrincipal UserDetailsImpl userDetails) {
         System.out.println(userDetails.getUser().getId());

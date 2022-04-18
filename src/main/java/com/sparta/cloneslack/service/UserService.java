@@ -71,8 +71,9 @@ public class UserService {
         String username = userDetails.getUsername();
         String nickname = userDetails.getUser().getNickname();
         Long userId = userDetails.getUser().getId();
+        String imgUrl = userDetails.getUser().getImgUrl();
 
-        return new UserInfoDto(userId, username, nickname);
+        return new UserInfoDto(userId, username, nickname, imgUrl);
 
     }
 
