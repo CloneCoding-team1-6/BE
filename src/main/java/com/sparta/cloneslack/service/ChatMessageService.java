@@ -47,7 +47,7 @@ public class ChatMessageService {
         }
         //topic은 chatroom이다
         //conver
-        redisTemplate.convertAndSend(channelTopic.getTopic(), chatMessage);
+       redisTemplate.convertAndSend(channelTopic.getTopic(), chatMessage);
     }
 
     public void save(ChatMessage chatMessage) {

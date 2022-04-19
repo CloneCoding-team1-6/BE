@@ -7,6 +7,7 @@ import redis.embedded.RedisServer;
 
 import javax.annotation.PostConstruct;
 import javax.annotation.PreDestroy;
+import java.io.IOException;
 
 // 내장 레디스를 사용하기 위한 코드
 // local 환경에서 여타의 CRUD를 테스트해보기 위해서는 Profile 을 local 로 설정해주어야 한다
@@ -22,7 +23,7 @@ public class EmbeddedRedisConfig {
     private RedisServer redisServer;
 
     @PostConstruct
-    public void redisServer() {
+    public void redisServer() throws IOException {
         redisServer = new RedisServer(redisPort);
         redisServer.start();
     }

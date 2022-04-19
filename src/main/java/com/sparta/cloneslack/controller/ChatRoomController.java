@@ -6,7 +6,6 @@ import com.sparta.cloneslack.dto.ChatRoomRequestDto;
 import com.sparta.cloneslack.dto.ChatRoomResponseDto;
 import com.sparta.cloneslack.dto.InvitationDto;
 import com.sparta.cloneslack.model.ChatMessage;
-import com.sparta.cloneslack.model.ChatRoom;
 import com.sparta.cloneslack.security.UserDetailsImpl;
 import com.sparta.cloneslack.service.ChatMessageService;
 import com.sparta.cloneslack.service.ChatRoomService;
@@ -36,7 +35,6 @@ public class ChatRoomController {
     @PostMapping("/rooms")
     public ChatRoomResponseDto ChatRoomResponseDto(@RequestBody ChatRoomRequestDto requestDto, @AuthenticationPrincipal UserDetailsImpl userDetails) throws IOException {
         requestDto.setUserId(userDetails.getUser().getId());
-
         ChatRoomResponseDto chatRoom = chatRoomService.createChatRoom(requestDto);
         return chatRoom;
     }

@@ -8,7 +8,6 @@ import com.sparta.cloneslack.security.jwt.JwtDecoder;
 import com.sparta.cloneslack.service.ChatMessageService;
 import com.sparta.cloneslack.service.UserService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.messaging.handler.annotation.Header;
 import org.springframework.messaging.handler.annotation.MessageMapping;
 import org.springframework.web.bind.annotation.RequestBody;

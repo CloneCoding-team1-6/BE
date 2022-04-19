@@ -30,7 +30,6 @@ public class ChatRoomService {
 
     private final ChatRoomRepository chatRoomRepository;
     private final UserService userService;
-
     private final UserRepository userRepository;
     public static final String ENTER_INFO = "ENTER_INFO"; // 채팅룸에 입장한 클라이언트의 sessionId 와 채팅룸 id 를 맵핑한 정보 저장
 
@@ -45,9 +44,11 @@ public class ChatRoomService {
     public List<ChatRoomListDto> getAllChatRooms(User user) {
         List<ChatRoomListDto> userChatRoom = new ArrayList<>();
         for (ChatRoom chatRoom : chatRoomRepository.findAllByOrderByCreatedAtDesc()) {
-            if(chatRoom.getUserList().contains(user)){
-                userChatRoom.add(new ChatRoomListDto(chatRoom, chatRoom.getUserList().get(0)));
-                System.out.println(chatRoom.getUserList().get(0));
+            System.out.println(chatRoom.getUserList());
+            for(int i = 0; i < chatRoom.getUserList().size(); i++){
+                if(chatRoom.getUserList().get(i).getId().equals(user.getId())) {
+                    userChatRoom.add(new ChatRoomListDto(chatRoom, chatRoom.getUserList().get(i)));
+                }
             }
         }
         return userChatRoom;

@@ -2,7 +2,6 @@ package com.sparta.cloneslack.pubsub;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.sparta.cloneslack.model.ChatMessage;
-import com.sparta.cloneslack.repository.ChatMessageRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.messaging.simp.SimpMessageSendingOperations;
