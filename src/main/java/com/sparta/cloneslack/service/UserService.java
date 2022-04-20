@@ -5,13 +5,19 @@ import com.sparta.cloneslack.dto.NicknameCheckDto;
 import com.sparta.cloneslack.dto.SignupRequestDto;
 import com.sparta.cloneslack.dto.UserInfoDto;
 import com.sparta.cloneslack.dto.UsernameCheckDto;
+import com.sparta.cloneslack.model.ChatRoom;
 import com.sparta.cloneslack.model.User;
+import com.sparta.cloneslack.repository.ChatRoomRepository;
 import com.sparta.cloneslack.repository.UserRepository;
 import com.sparta.cloneslack.security.UserDetailsImpl;
 import com.sparta.cloneslack.utils.Validator;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
@@ -20,6 +26,7 @@ public class UserService {
     private final UserRepository userRepository;
     private final PasswordEncoder passwordEncoder;
     private final Validator validator;
+    private final ChatRoomRepository chatRoomRepository;
 
 
     //회원가입 확인
@@ -35,7 +42,20 @@ public class UserService {
         }
 
         requestDto.setPassword(passwordEncoder.encode(requestDto.getPassword()));
-        userRepository.save(new User(requestDto));
+        User user = new User(requestDto);
+        userRepository.save(user);
+
+        //전체 채팅방에 모든 유저 회원가입하자마자 등록
+//         user2 = new ArrayList<>();
+        Optional<ChatRoom> chatRoom = chatRoomRepository.findById(1L);
+
+        ChatRoom chatRoom1 = chatRoom.get();
+
+        List<User> user2 = chatRoom1.getUserList();
+        user2.add(user);
+        chatRoom1.setUserList(user2);
+        chatRoomRepository.save(chatRoom1);
+
         return msg;
     }
 

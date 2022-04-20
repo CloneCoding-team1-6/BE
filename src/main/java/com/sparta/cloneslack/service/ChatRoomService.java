@@ -99,6 +99,7 @@ public class ChatRoomService {
         return ResponseEntity.ok().body("good");
 
     }
+
     //채팅방 나가기
     @Transactional
     public ResponseEntity<?> outChatRoom(Long roomId, User user) {

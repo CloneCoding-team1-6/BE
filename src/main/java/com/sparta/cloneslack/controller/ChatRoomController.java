@@ -54,7 +54,7 @@ public class ChatRoomController {
     //채팅방 나가기
     @DeleteMapping("/rooms/{roomId}")
     public ResponseEntity<?> outChatRoom(@PathVariable Long roomId,@AuthenticationPrincipal UserDetailsImpl userDetails){
-        return chatRoomService.outChatRoom(roomId,userDetails.getUser());
+        return chatRoomService.outChatRoom(roomId, userDetails.getUser());
     }
 
     // 채팅방 상세 조회

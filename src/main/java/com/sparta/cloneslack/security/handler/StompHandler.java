@@ -50,7 +50,6 @@ public class StompHandler implements ChannelInterceptor {
 //
 //            // 채팅방에 들어온 클라이언트 sessionId를 roomId와 맵핑해 놓는다.(나중에 특정 세션이 어떤 채팅방에 들어가 있는지 알기 위함)
 //            // sessionId는 현재들어와있는 유저를 확인하기 위함이다.
-//            // sessionId는 정상적으로 들어가고있음
             String sessionId = (String) message.getHeaders().get("simpSessionId");
 //            //sessionId와 roomId를 맵핑
             chatRoomService.setUserEnterInfo(sessionId, roomId);
@@ -59,7 +58,7 @@ public class StompHandler implements ChannelInterceptor {
             // 클라이언트 입장 메시지를 채팅방에 발송한다.(redis publish)
             String jwtToken = accessor.getFirstNativeHeader("token");
             String name = jwtDecoder.decodeNickname(jwtToken);
-            chatService.sendChatMessage(ChatMessage.builder().type(ChatMessage.MessageType.ENTER).roomId(roomId).sender(name).build());
+//            chatService.sendChatMessage(ChatMessage.builder().type(ChatMessage.MessageType.ENTER).roomId(roomId).sender(name).build());
 
             log.info("SUBSCRIBED {}, {}", name, roomId);
         }
@@ -78,7 +77,7 @@ public class StompHandler implements ChannelInterceptor {
 
             if(accessor.getFirstNativeHeader("token") != null) {
                 String name = jwtDecoder.decodeNickname(token);
-                chatService.sendChatMessage(ChatMessage.builder().type(ChatMessage.MessageType.QUIT).roomId(roomId).sender(name).build());
+//                chatService.sendChatMessage(ChatMessage.builder().type(ChatMessage.MessageType.QUIT).roomId(roomId).sender(name).build());
             }
 
             // 퇴장한 클라이언트의 roomId 맵핑 정보를 삭제한다.
