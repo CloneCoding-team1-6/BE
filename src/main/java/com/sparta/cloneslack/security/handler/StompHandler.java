@@ -8,14 +8,12 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.messaging.Message;
 import org.springframework.messaging.MessageChannel;
-import org.springframework.messaging.simp.SimpMessageSendingOperations;
 import org.springframework.messaging.simp.stomp.StompCommand;
 import org.springframework.messaging.simp.stomp.StompHeaderAccessor;
 import org.springframework.messaging.support.ChannelInterceptor;
 import org.springframework.stereotype.Component;
 
 import java.util.Optional;
-
 
 @Slf4j
 @RequiredArgsConstructor
@@ -37,15 +35,15 @@ public class StompHandler implements ChannelInterceptor {
 
         // 접근했을때 COMMAND HEADER의 값을 확인 한다.
         // 만약 CONNET라면 -> 초기 연결임
-//        if (StompCommand.CONNECT == accessor.getCommand()) { // websocket 연결요청
-//            // 토큰의 값만 확인 (로그인 여부를 확인하기 위함)
-//            // 헤더의 토큰값을 빼오기
-//            String jwtToken = accessor.getFirstNativeHeader("token");
-//            jwtDecoder.decodeUsername(jwtToken);
-//        }
+        if (StompCommand.CONNECT == accessor.getCommand()) { // websocket 연결요청
+            // 토큰의 값만 확인 (로그인 여부를 확인하기 위함)
+            // 헤더의 토큰값을 빼오기
+            String jwtToken = accessor.getFirstNativeHeader("token");
+            jwtDecoder.decodeUsername(jwtToken);
+        }
 
         //만약 COMMAND가 SUBSCRIBE 즉 메세지를 주고 받기전 구독하는 것이라면
-        if (StompCommand.SUBSCRIBE == accessor.getCommand()) { // 채팅룸 구독요청
+        else if (StompCommand.SUBSCRIBE == accessor.getCommand()) { // 채팅룸 구독요청
             // header정보에서 구독 destination정보를 얻고, roomId를 추출한다.
             // roomId를 URL로 전송해주고 있어 추출 필요
             String roomId = chatService.getRoomId(Optional.ofNullable((String) message.getHeaders().get("simpDestination")).orElse("InvalidRoomId"));
@@ -63,10 +61,8 @@ public class StompHandler implements ChannelInterceptor {
             String name = jwtDecoder.decodeNickname(jwtToken);
             chatService.sendChatMessage(ChatMessage.builder().type(ChatMessage.MessageType.ENTER).roomId(roomId).sender(name).build());
 
-
             log.info("SUBSCRIBED {}, {}", name, roomId);
         }
-
 
         //룸을 이동하게 된다면 -> DISCONNET 시킨다 ->
         //채팅방을 나가는경우
@@ -82,7 +78,7 @@ public class StompHandler implements ChannelInterceptor {
 
             if(accessor.getFirstNativeHeader("token") != null) {
                 String name = jwtDecoder.decodeNickname(token);
-//                chatService.sendChatMessage(ChatMessage.builder().type(ChatMessage.MessageType.QUIT).roomId(roomId).sender(name).build());
+                chatService.sendChatMessage(ChatMessage.builder().type(ChatMessage.MessageType.QUIT).roomId(roomId).sender(name).build());
             }
 
             // 퇴장한 클라이언트의 roomId 맵핑 정보를 삭제한다.
@@ -91,5 +87,4 @@ public class StompHandler implements ChannelInterceptor {
         }
         return message;
     }
-
 }

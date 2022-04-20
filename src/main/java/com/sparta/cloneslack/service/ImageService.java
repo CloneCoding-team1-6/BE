@@ -43,17 +43,11 @@ public class ImageService {
                 .orElseThrow(() -> new IllegalArgumentException("잘못된 파일 형식입니다."));
 
         ImageDto imageDto = upload(uploadFile, dirName);
-
         Optional<User> user1 = userRepository.findById(imageRequestDto.getUserId());
-
         User user = user1.get();
-
         user.setImgUrl(imageDto.getFileUrl());
-
         userRepository.save(user);
-
         imageDto.setUserId(imageRequestDto.getUserId());
-
         registImage(imageDto);
     }
 

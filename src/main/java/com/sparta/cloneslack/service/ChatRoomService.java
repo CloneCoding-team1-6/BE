@@ -79,7 +79,7 @@ public class ChatRoomService {
     public void removeUserEnterInfo(String sessionId) {
         hashOpsEnterInfo.delete(ENTER_INFO, sessionId);
     }
-
+    //채팅방에 유저 초대
     @Transactional
     public ResponseEntity<?> inviteUser(InvitationDto invitationDto) {
         Long roomId = invitationDto.getRoomId();
@@ -93,11 +93,13 @@ public class ChatRoomService {
                 () -> new IllegalArgumentException("방번호를 확인해주세요")
         );
         findRoom.getUserList().add(user);
+        System.out.println(user);
         chatRoomRepository.save(findRoom);
+        System.out.println(findRoom);
         return ResponseEntity.ok().body("good");
 
     }
-
+    //채팅방 나가기
     @Transactional
     public ResponseEntity<?> outChatRoom(Long roomId, User user) {
         Optional<ChatRoom> tmp = chatRoomRepository.findById(roomId);

@@ -67,5 +67,4 @@ public class ChatMessageService {
         pageable = PageRequest.of(page, 150);
         return chatMessageRepository.findByRoomId(roomId, pageable);
     }
-
 }

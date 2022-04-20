@@ -43,7 +43,7 @@ public class UserController {
     }
 
     //유저 정보 조회
-    @GetMapping("/api/idLogin")
+    @GetMapping("/api/isLogin")
     public UserInfoDto getUserInfo(@AuthenticationPrincipal UserDetailsImpl userDetails) {
         System.out.println(userDetails.getUser().getId());
         return userService.getUserInfo(userDetails);
