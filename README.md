@@ -35,6 +35,3 @@
 <img src="https://img.shields.io/badge/SockJS-010101?style=flat-square&logo=SockJS&logoColor=white"/> <img src="https://img.shields.io/badge/StompJS-010101?style=flat-square&logo=StompJS&logoColor=white"/> <img src="https://img.shields.io/badge/AWS Amplify-FF9900?style=flat-square&logo=AWS Amplify&logoColor=white"/>
 
 ### - BE
-
-
-
