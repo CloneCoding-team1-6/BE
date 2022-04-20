@@ -14,8 +14,6 @@
 | [박찬현](https://github.com/bonoo1)|<img src="https://img.shields.io/badge/Springboot-6DB33F?style=flat-square&logo=Springboot&logoColor=white"/>|
 | [최봉진](https://github.com/cbjjzzang)|<img src="https://img.shields.io/badge/Springboot-6DB33F?style=flat-square&logo=Springboot&logoColor=white"/>|
 
-<a href="https://github.com/CloneCoding-team1-6/FE"><img src="https://img.shields.io/badge/GitHub-181717?style=flat-square&logo=GitHub&logoColor=white"/></a>
-
 
 ## ⚙ 주요 기능
  - 회원가입 / 로그인
@@ -24,6 +22,7 @@
     - 채팅방 생성 / 입장 / 퇴장
     - 채팅방 유저 초대
     - 이전 채팅 조회
+
 
 ## 🔨기술스택
 ### - FE
