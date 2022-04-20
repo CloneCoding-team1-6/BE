@@ -26,9 +26,9 @@ public class Validator {
             throw new IllegalArgumentException("중복된 닉네임이 존재합니다.");
         }
 
-//        if(!Pattern.matches("^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,6}$", signupRequestDto.getUsername())){
-//            throw new IllegalArgumentException("이메일 형식의 ID를 입력 해주세요.");
-//        }
+        if(!Pattern.matches("^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,6}$", signupRequestDto.getUsername())){
+            throw new IllegalArgumentException("이메일 형식의 ID를 입력 해주세요.");
+        }
 
         if(signupRequestDto.getPassword().length()<4){
             throw new IllegalArgumentException("비밀번호는 최소 4자 이상이여야 합니다.");
