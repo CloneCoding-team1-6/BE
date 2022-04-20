@@ -24,11 +24,11 @@ public class MyPageController {
 
     //프로필 이미지 업로드
     @PutMapping("/api/userImage")
-    public void upload(
+    public String upload(
             @RequestParam("file") MultipartFile file,
             @AuthenticationPrincipal UserDetailsImpl userDetails
     ) throws IOException {
         ImageRequestDto imageRequestDto = new ImageRequestDto(userDetails.getUser().getId(), file);
-        imageService.upload(imageRequestDto, "static");
+        return imageService.upload(imageRequestDto, "static");
     }
 }

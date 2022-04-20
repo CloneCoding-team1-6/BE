@@ -37,7 +37,7 @@ public class ImageService {
 
     // Image 업로드
     @Transactional
-    public void upload(ImageRequestDto imageRequestDto, String dirName) throws IOException {
+    public String upload(ImageRequestDto imageRequestDto, String dirName) throws IOException {
 
         File uploadFile = convert(imageRequestDto.getFile())  // 파일 변환할 수 없으면 에러
                 .orElseThrow(() -> new IllegalArgumentException("잘못된 파일 형식입니다."));
@@ -49,16 +49,16 @@ public class ImageService {
         userRepository.save(user);
         imageDto.setUserId(imageRequestDto.getUserId());
         registImage(imageDto);
+        return imageDto.getFileUrl();
     }
 
     // S3로 파일 업로드하기
     private ImageDto upload(File uploadFile, String dirName) {
         String fileName = dirName + "/" + UUID.randomUUID() + uploadFile.getName();  // S3에 저장된 파일 이름
-        System.out.println(fileName);
         String uploadImageUrl = putS3(uploadFile, fileName); // s3로 업로드
         System.out.println(uploadImageUrl);
         removeNewFile(uploadFile);
-        return new ImageDto(fileName, uploadImageUrl);
+        return new ImageDto(uploadImageUrl, fileName);
     }
 
     // Image Entity 저장
